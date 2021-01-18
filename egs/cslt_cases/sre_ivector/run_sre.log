@@ -1,0 +1,4 @@
+sid/train_diag_ubm.sh --cmd run.pl -q wolf.cpu.q --nj 8 --num-threads 2 data/mfcc/train_3k 2048 exp/ivector_gauss2048_dim400/diag_ubm
+sid/train_diag_ubm.sh: initializing model from E-M in memory, 
+sid/train_diag_ubm.sh: starting from 1024 Gaussians, reaching 2048;
+sid/train_diag_ubm.sh: for 20 iterations, using at most 500000 frames of data
