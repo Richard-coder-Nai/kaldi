@@ -35,12 +35,12 @@ if [ "$use_existing_models" == "true" ]; then
   done
 else
   run.pl ${plda_vec_dir}/log/compute_mean.log \
-    ivector-normalize-length scp:${plda_vec_dir}/ivector.scp \
+    ivector-normalize-length scp:${plda_vec_dir}/vector.scp \
     ark:- \| ivector-mean ark:- ${plda_vec_dir}/mean.vec || exit 1;
 
   run.pl $plda_vec_dir/log/plda.log \
     ivector-compute-plda ark:$plda_data_dir/spk2utt \
-    "ark:ivector-normalize-length scp:${plda_vec_dir}/ivector.scp  ark:- |" \
+    "ark:ivector-normalize-length scp:${plda_vec_dir}/vector.scp  ark:- |" \
     $plda_vec_dir/plda || exit 1;
 fi
 
@@ -51,6 +51,6 @@ run.pl $scores_dir/log/plda_scoring.log \
     --simple-length-normalization=$simple_length_norm \
     --num-utts=ark:${enroll_vec_dir}/num_utts.ark \
     "ivector-copy-plda --smoothing=0.0 ${plda_vec_dir}/plda - |" \
-    "ark:ivector-subtract-global-mean ${plda_vec_dir}/mean.vec scp:${enroll_vec_dir}/spk_ivector.scp ark:- | ivector-normalize-length ark:- ark:- |" \
-    "ark:ivector-normalize-length scp:${test_vec_dir}/ivector.scp ark:- | ivector-subtract-global-mean ${plda_vec_dir}/mean.vec ark:- ark:- | ivector-normalize-length ark:- ark:- |" \
+    "ark:ivector-subtract-global-mean ${plda_vec_dir}/mean.vec scp:${enroll_vec_dir}/spk_vector.scp ark:- | ivector-normalize-length ark:- ark:- |" \
+    "ark:ivector-normalize-length scp:${test_vec_dir}/vector.scp ark:- | ivector-subtract-global-mean ${plda_vec_dir}/mean.vec ark:- ark:- | ivector-normalize-length ark:- ark:- |" \
     "cat '$trials' | cut -d\  --fields=1,2 |" $scores_dir/plda_scores || exit 1;

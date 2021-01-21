@@ -1,0 +1,6 @@
+local/cosine_scoring.sh data/mfcc/enroll data/mfcc/test exp/ivector_gauss2048_dim400/ivectors_enroll exp/ivector_gauss2048_dim400/ivectors_test data/test/trials exp/ivector_gauss2048_dim400/scores
+local/lda_scoring.sh data/mfcc/train data/mfcc/enroll data/mfcc/test exp/ivector_gauss2048_dim400/ivectors_train exp/ivector_gauss2048_dim400/ivectors_enroll exp/ivector_gauss2048_dim400/ivectors_test data/test/trials exp/ivector_gauss2048_dim400/scores
+local/plda_scoring.sh data/mfcc/train data/mfcc/enroll data/mfcc/test exp/ivector_gauss2048_dim400/ivectors_train exp/ivector_gauss2048_dim400/ivectors_enroll exp/ivector_gauss2048_dim400/ivectors_test data/test/trials exp/ivector_gauss2048_dim400/scores
+    cosine eer:  0.67 
+       lda eer:  0.07 
+      plda eer:  0.07 

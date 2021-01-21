@@ -37,7 +37,7 @@ else
 mkdir -p ${lda_vec_dir}/log
 run.pl ${lda_vec_dir}/log/lda.log \
   ivector-compute-lda --dim=$lda_dim  --total-covariance-factor=$covar_factor \
-  "ark:ivector-normalize-length scp:${lda_vec_dir}/ivector.scp ark:- |" \
+  "ark:ivector-normalize-length scp:${lda_vec_dir}/vector.scp ark:- |" \
     ark:${lda_data_dir}/utt2spk \
     ${lda_vec_dir}/transform.mat || exit 1;
 fi
@@ -45,6 +45,6 @@ fi
 mkdir -p $scores_dir/log
 run.pl $scores_dir/log/lda_scoring.log \
   ivector-compute-dot-products  "cat '$trials' | cut -d\  --fields=1,2 |"  \
-  "ark:ivector-transform ${lda_vec_dir}/transform.mat scp:${enroll_vec_dir}/spk_ivector.scp ark:- | ivector-normalize-length ark:- ark:- |" \
-  "ark:ivector-normalize-length scp:${test_vec_dir}/ivector.scp ark:- | ivector-transform ${lda_vec_dir}/transform.mat ark:- ark:- | ivector-normalize-length ark:- ark:- |" \
+  "ark:ivector-transform ${lda_vec_dir}/transform.mat scp:${enroll_vec_dir}/spk_vector.scp ark:- | ivector-normalize-length ark:- ark:- |" \
+  "ark:ivector-normalize-length scp:${test_vec_dir}/vector.scp ark:- | ivector-transform ${lda_vec_dir}/transform.mat ark:- ark:- | ivector-normalize-length ark:- ark:- |" \
   $scores_dir/lda_scores || exit 1;

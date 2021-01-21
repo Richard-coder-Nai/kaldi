@@ -1,4 +1,40 @@
-sid/train_diag_ubm.sh --cmd run.pl -q wolf.cpu.q --nj 8 --num-threads 2 data/mfcc/train_3k 2048 exp/ivector_gauss2048_dim400/diag_ubm
-sid/train_diag_ubm.sh: initializing model from E-M in memory, 
-sid/train_diag_ubm.sh: starting from 1024 Gaussians, reaching 2048;
-sid/train_diag_ubm.sh: for 20 iterations, using at most 500000 frames of data
++ . ./cmd.sh
+++ export 'train_cmd=run.pl -q wolf.cpu.q'
+++ train_cmd='run.pl -q wolf.cpu.q'
+++ export 'decode_cmd=run.pl -q wolf.cpu.q'
+++ decode_cmd='run.pl -q wolf.cpu.q'
+++ export 'cuda_cmd=run.pl -q wolf.gpu.q'
+++ cuda_cmd='run.pl -q wolf.gpu.q'
++ . ./path.sh
++++ pwd
+++ export KALDI_ROOT=/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../..
+++ KALDI_ROOT=/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../..
+++ '[' -f /home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../tools/env.sh ']'
+++ . /home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../tools/env.sh
++++ export PATH=/home/nairuiqian/kaldi/tools/python:/usr/local/cuda/bin:/usr/local/cuda/bin:/home/nairuiqian/.vscode-server/bin/ea3859d4ba2f3e577a159bc91e3074c5d85c0523/bin:/usr/local/cuda/bin:/usr/local/cuda/bin:/home/nairuiqian/anaconda3/bin:/home/nairuiqian/anaconda3/condabin:/usr/local/bin:/usr/bin
++++ PATH=/home/nairuiqian/kaldi/tools/python:/usr/local/cuda/bin:/usr/local/cuda/bin:/home/nairuiqian/.vscode-server/bin/ea3859d4ba2f3e577a159bc91e3074c5d85c0523/bin:/usr/local/cuda/bin:/usr/local/cuda/bin:/home/nairuiqian/anaconda3/bin:/home/nairuiqian/anaconda3/condabin:/usr/local/bin:/usr/bin
+++ export PATH=/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/utils/:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../tools/openfst/bin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector:/home/nairuiqian/kaldi/tools/python:/usr/local/cuda/bin:/usr/local/cuda/bin:/home/nairuiqian/.vscode-server/bin/ea3859d4ba2f3e577a159bc91e3074c5d85c0523/bin:/usr/local/cuda/bin:/usr/local/cuda/bin:/home/nairuiqian/anaconda3/bin:/home/nairuiqian/anaconda3/condabin:/usr/local/bin:/usr/bin
+++ PATH=/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/utils/:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../tools/openfst/bin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector:/home/nairuiqian/kaldi/tools/python:/usr/local/cuda/bin:/usr/local/cuda/bin:/home/nairuiqian/.vscode-server/bin/ea3859d4ba2f3e577a159bc91e3074c5d85c0523/bin:/usr/local/cuda/bin:/usr/local/cuda/bin:/home/nairuiqian/anaconda3/bin:/home/nairuiqian/anaconda3/condabin:/usr/local/bin:/usr/bin
+++ '[' '!' -f /home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../tools/config/common_path.sh ']'
+++ . /home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../tools/config/common_path.sh
++++ '[' -z /home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../.. ']'
++++ export PATH=/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/bin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/chainbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/featbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/fgmmbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/fstbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/gmmbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/ivectorbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/kwsbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/latbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/lmbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/nnet2bin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/nnet3bin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/nnetbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/online2bin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/onlinebin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/rnnlmbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/sgmm2bin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/sgmmbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/tfrnnlmbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/utils/:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../tools/openfst/bin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector:/home/nairuiqian/kaldi/tools/python:/usr/local/cuda/bin:/usr/local/cuda/bin:/home/nairuiqian/.vscode-server/bin/ea3859d4ba2f3e577a159bc91e3074c5d85c0523/bin:/usr/local/cuda/bin:/usr/local/cuda/bin:/home/nairuiqian/anaconda3/bin:/home/nairuiqian/anaconda3/condabin:/usr/local/bin:/usr/bin
++++ PATH=/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/bin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/chainbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/featbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/fgmmbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/fstbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/gmmbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/ivectorbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/kwsbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/latbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/lmbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/nnet2bin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/nnet3bin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/nnetbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/online2bin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/onlinebin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/rnnlmbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/sgmm2bin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/sgmmbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../src/tfrnnlmbin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/utils/:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector/../../../tools/openfst/bin:/home/nairuiqian/kaldi/egs/cslt_cases/sre_ivector:/home/nairuiqian/kaldi/tools/python:/usr/local/cuda/bin:/usr/local/cuda/bin:/home/nairuiqian/.vscode-server/bin/ea3859d4ba2f3e577a159bc91e3074c5d85c0523/bin:/usr/local/cuda/bin:/usr/local/cuda/bin:/home/nairuiqian/anaconda3/bin:/home/nairuiqian/anaconda3/condabin:/usr/local/bin:/usr/bin
+++ export LC_ALL=C
+++ LC_ALL=C
++ n=8
++ num_gauss=2048
++ ivector_dim=400
++ exp=exp/ivector_gauss2048_dim400
++ set -eu
++ thchs=/home/nairuiqian/Projects/THCHS30/
++ trials=data/test/trials
++ local/cosine_scoring.sh data/mfcc/enroll data/mfcc/test exp/ivector_gauss2048_dim400/ivectors_enroll exp/ivector_gauss2048_dim400/ivectors_test data/test/trials exp/ivector_gauss2048_dim400/scores
+local/cosine_scoring.sh data/mfcc/enroll data/mfcc/test exp/ivector_gauss2048_dim400/ivectors_enroll exp/ivector_gauss2048_dim400/ivectors_test data/test/trials exp/ivector_gauss2048_dim400/scores
++ local/lda_scoring.sh data/mfcc/train data/mfcc/enroll data/mfcc/test exp/ivector_gauss2048_dim400/ivectors_train exp/ivector_gauss2048_dim400/ivectors_enroll exp/ivector_gauss2048_dim400/ivectors_test data/test/trials exp/ivector_gauss2048_dim400/scores
+local/lda_scoring.sh data/mfcc/train data/mfcc/enroll data/mfcc/test exp/ivector_gauss2048_dim400/ivectors_train exp/ivector_gauss2048_dim400/ivectors_enroll exp/ivector_gauss2048_dim400/ivectors_test data/test/trials exp/ivector_gauss2048_dim400/scores
++ local/plda_scoring.sh data/mfcc/train data/mfcc/enroll data/mfcc/test exp/ivector_gauss2048_dim400/ivectors_train exp/ivector_gauss2048_dim400/ivectors_enroll exp/ivector_gauss2048_dim400/ivectors_test data/test/trials exp/ivector_gauss2048_dim400/scores
+local/plda_scoring.sh data/mfcc/train data/mfcc/enroll data/mfcc/test exp/ivector_gauss2048_dim400/ivectors_train exp/ivector_gauss2048_dim400/ivectors_enroll exp/ivector_gauss2048_dim400/ivectors_test data/test/trials exp/ivector_gauss2048_dim400/scores
++ for i in cosine lda plda
+run.sh: command substitution: line 106: syntax error near unexpected token `('
++ eer=

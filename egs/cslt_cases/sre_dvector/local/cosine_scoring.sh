@@ -25,6 +25,6 @@ mkdir -p $scores_dir/log
 run.pl $scores_dir/log/cosine_scoring.log \
   cat $trials \| awk '{print $1" "$2}' \| \
  ivector-compute-dot-products - \
-  scp:${enroll_vec_dir}/spk_ivector.scp \
-  "ark:ivector-normalize-length scp:${test_vec_dir}/ivector.scp ark:- |" \
+  scp:${enroll_vec_dir}/spk_vector.scp \
+  "ark:ivector-normalize-length scp:${test_vec_dir}/vector.scp ark:- |" \
    $scores_dir/cosine_scores || exit 1;

@@ -1,0 +1,6 @@
+local/cosine_scoring.sh data/fbank/enroll data/fbank/test exp/dvector_tdnn_dim400/dvectors_enroll exp/dvector_tdnn_dim400/dvectors_test data/test/trials exp/dvector_tdnn_dim400/scores
+local/lda_scoring.sh data/fbank/train data/fbank/enroll data/fbank/test exp/dvector_tdnn_dim400/dvectors_train exp/dvector_tdnn_dim400/dvectors_enroll exp/dvector_tdnn_dim400/dvectors_test data/test/trials exp/dvector_tdnn_dim400/scores
+local/plda_scoring.sh data/fbank/train data/fbank/enroll data/fbank/test exp/dvector_tdnn_dim400/dvectors_train exp/dvector_tdnn_dim400/dvectors_enroll exp/dvector_tdnn_dim400/dvectors_test data/test/trials exp/dvector_tdnn_dim400/scores
+    cosine eer:  3.28 
+       lda eer:  1.20 
+      plda eer:  2.27 

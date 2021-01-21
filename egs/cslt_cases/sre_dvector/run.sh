@@ -16,7 +16,7 @@ set -eu
 ###### Bookmark: basic preparation ######
 
 # corpus and trans directory
-thchs=/nfs/public/materials/data/thchs30-openslr
+thchs=/home/nairuiqian/Projects/THCHS30/
 
 # you can obtain the database by uncommting the following lines
 # [ -d $thchs ] || mkdir -p $thchs

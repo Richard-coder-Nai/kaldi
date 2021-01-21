@@ -15,7 +15,7 @@ exp=exp/ivector_gauss${num_gauss}_dim${ivector_dim}
 set -eu
 
 
-###### Bookmark: basic preparation ######
+###### BOOKMARK: basic preparation ######
 
 # corpus and trans directory
 # thchs=/nfs/public/materials/data/thchs30-openslr
@@ -29,39 +29,40 @@ thchs=/home/nairuiqian/Projects/THCHS30/
 # local/download_and_untar.sh $thchs  http://www.openslr.org/resources/18 test-noise
 
 # generate text, wav.scp, utt2pk, spk2utt in data/{train,test}
-# local/thchs-30_data_prep.sh $thchs/data_thchs30
+local/thchs-30_data_prep.sh $thchs/data_thchs30
 # randomly select 1000 utts from data/test as enrollment in data/enroll
 # using rest utts in data/test for test
 # USAGE subset_data_dir.sh <srcdir> <num-utt> <destdir>
-# utils/subset_data_dir.sh data/test 1000 data/enroll
+utils/subset_data_dir.sh data/test 1000 data/enroll
 # USAGE: filter_scp.pl [--exclude] [-f <field-to-filter-on>] id_list [in.scp] > out.scp 
-# utils/filter_scp.pl --exclude data/enroll/wav.scp data/test/wav.scp > data/test/wav.scp.rest
-# mv data/test/wav.scp.rest data/test/wav.scp
-# utils/fix_data_dir.sh data/test
+utils/filter_scp.pl --exclude data/enroll/wav.scp data/test/wav.scp > data/test/wav.scp.rest
+mv data/test/wav.scp.rest data/test/wav.scp
+utils/fix_data_dir.sh data/test
 
 # prepare trials in data/test
 # USAGE prepare_trials.py <enroll-dir> <test-dir>
-# local/prepare_trials.py data/enroll data/test
-# trials=data/test/trials
+local/prepare_trials.py data/enroll data/test
+trials=data/test/trials
 
 
-###### Bookmark: feature extraction ######
+###### BOOKMARK: feature extraction ######
 
 # produce MFCC feature with energy and its vad in data/mfcc/{train,enroll,test}
-# rm -rf data/mfcc && mkdir -p data/mfcc && cp -r data/{train,enroll,test} data/mfcc
-# for x in train enroll test; do
-#   steps/make_mfcc.sh --nj $n --cmd "$train_cmd" data/mfcc/$x
-#   sid/compute_vad_decision.sh --nj $n --cmd "$train_cmd" data/mfcc/$x data/mfcc/$x/log data/mfcc/$x/data
-# done
+rm -rf data/mfcc && mkdir -p data/mfcc && cp -r data/{train,enroll,test} data/mfcc
+for x in train enroll test; do
+  steps/make_mfcc.sh --nj $n --cmd "$train_cmd" data/mfcc/$x
+  sid/compute_vad_decision.sh --nj $n --cmd "$train_cmd" data/mfcc/$x data/mfcc/$x/log data/mfcc/$x/data
+done
 
 
-###### Bookmark: i-vector training ######
+###### BOOKMARK: i-vector training ######
 
 # reduce the amount of training data for UBM, num of utts depends on the total
-# utils/subset_data_dir.sh data/mfcc/train 3000 data/mfcc/train_3k
-# utils/subset_data_dir.sh data/mfcc/train 6000 data/mfcc/train_6k
+utils/subset_data_dir.sh data/mfcc/train 3000 data/mfcc/train_3k
+utils/subset_data_dir.sh data/mfcc/train 6000 data/mfcc/train_6k
 
 # train UBM
+# USAGE: sid/train_diag_ubm.sh  <data> <num-gauss> <output-dir>
 sid/train_diag_ubm.sh --cmd "$train_cmd" --nj $n --num-threads 2 \
   data/mfcc/train_3k $num_gauss $exp/diag_ubm
 sid/train_full_ubm.sh --cmd "$train_cmd" --nj $n \
@@ -74,7 +75,7 @@ sid/train_ivector_extractor.sh --cmd "$train_cmd" --nj $n \
   $exp/full_ubm/final.ubm data/mfcc/train $exp/extractor
 
 
-###### Bookmark: i-vector extraction ######
+###### BOOKMARK: i-vector extraction ######
 
 sid/extract_ivectors.sh --cmd "$train_cmd" --nj $n \
   $exp/extractor data/mfcc/train $exp/ivectors_train
@@ -86,7 +87,7 @@ sid/extract_ivectors.sh --cmd "$train_cmd" --nj $n \
   $exp/extractor data/mfcc/test $exp/ivectors_test
 
 
-###### Bookmark: cosine scoring ######
+###### BOOKMARK: cosine scoring ######
 
 # basic cosine scoring on i-vectors
 local/cosine_scoring.sh data/mfcc/enroll data/mfcc/test \
