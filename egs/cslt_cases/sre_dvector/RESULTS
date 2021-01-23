@@ -15,3 +15,9 @@ cosine eer:  3.61
    lda eer:  0.94
   plda eer:  2.21
 
+
+#  Obtained by Ruiqian Nai
+
+cosine eer:  3.28 
+       lda eer:  1.20 
+      plda eer:  2.27 

@@ -1,27 +1,7 @@
-creating data/{train,test}, ignore dev set
-cleaning data/train
-preparing scps and text in data/train
-cleaning data/test
-preparing scps and text in data/test
-utils/subset_data_dir.sh: reducing #utt from 2495 to 1000
-fix_data_dir.sh: kept 1495 utterances out of 2495
-fix_data_dir.sh: old files are kept in data/test/.backup
-Finished preparing trials.
-steps/make_mfcc.sh --nj 10 --cmd run.pl -q wolf.cpu.q data/mfcc/train
-utils/validate_data_dir.sh: Successfully validated data-directory data/mfcc/train
-steps/make_mfcc.sh: [info]: no segments file exists: assuming wav.scp indexed by utterance.
-Succeeded creating MFCC features for train
-sid/compute_vad_decision.sh --nj 10 --cmd run.pl -q wolf.cpu.q data/mfcc/train data/mfcc/train/log data/mfcc/train/data
-Created VAD output for train
-steps/make_mfcc.sh --nj 10 --cmd run.pl -q wolf.cpu.q data/mfcc/enroll
-utils/validate_data_dir.sh: Successfully validated data-directory data/mfcc/enroll
-steps/make_mfcc.sh: [info]: no segments file exists: assuming wav.scp indexed by utterance.
-Succeeded creating MFCC features for enroll
-sid/compute_vad_decision.sh --nj 10 --cmd run.pl -q wolf.cpu.q data/mfcc/enroll data/mfcc/enroll/log data/mfcc/enroll/data
-Created VAD output for enroll
-steps/make_mfcc.sh --nj 10 --cmd run.pl -q wolf.cpu.q data/mfcc/test
-utils/validate_data_dir.sh: Successfully validated data-directory data/mfcc/test
-steps/make_mfcc.sh: [info]: no segments file exists: assuming wav.scp indexed by utterance.
-Succeeded creating MFCC features for test
-sid/compute_vad_decision.sh --nj 10 --cmd run.pl -q wolf.cpu.q data/mfcc/test data/mfcc/test/log data/mfcc/test/data
-Created VAD output for test
+nohup: ignoring input
+local/cosine_scoring.sh data/mfcc/enroll data/mfcc/test exp/xvector_tdnn_dim512/xvectors_enroll exp/xvector_tdnn_dim512/xvectors_test data/test/trials exp/xvector_tdnn_dim512/scores
+local/lda_scoring.sh data/train_combined data/mfcc/enroll data/mfcc/test exp/xvector_tdnn_dim512/xvectors_train_combined exp/xvector_tdnn_dim512/xvectors_enroll exp/xvector_tdnn_dim512/xvectors_test data/test/trials exp/xvector_tdnn_dim512/scores
+local/plda_scoring.sh data/train_combined data/mfcc/enroll data/mfcc/test exp/xvector_tdnn_dim512/xvectors_train_combined exp/xvector_tdnn_dim512/xvectors_enroll exp/xvector_tdnn_dim512/xvectors_test data/test/trials exp/xvector_tdnn_dim512/scores
+    cosine eer: 19.53 
+       lda eer:  1.40 
+      plda eer:  0.40 
